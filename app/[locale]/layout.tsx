@@ -4,7 +4,6 @@ import './globals.css';
 import { Providers } from '@/shared/lib/providers';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 const inter = Inter({ subsets: ['latin'] });
 
