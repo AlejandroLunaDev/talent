@@ -1,0 +1,311 @@
+{
+  "sidebar": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "agenda": "Agenda",
+    "communication": "Communication",
+    "project": "Project",
+    "team": "Team",
+    "feedback": "Feedback",
+    "helpCenter": "Help Center",
+    "activeSimulation": "Active Simulation",
+    "findSimulation": "Find Simulation",
+    "exploreOpportunities": "Explore Opportunities",
+    "nextChallenge": "Find your next simulation",
+    "joinSimulation": "Join a Simulation",
+    "discoverPotential": "Discover your potential"
+  },
+  "userMenu": {
+    "viewProfile": "View profile",
+    "profile": "Profile",
+    "logout": "Sign out"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "description": "Enter your credentials to continue",
+      "email": {
+        "label": "Email",
+        "placeholder": "your.email@example.com",
+        "error": {
+          "required": "Email is required",
+          "invalid": "Please enter a valid email address"
+        }
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••••••",
+        "forgot": "Forgot your password?",
+        "error": {
+          "required": "Password is required",
+          "minLength": "Password must be at least 8 characters"
+        }
+      },
+      "submit": "Sign in",
+      "loading": "Signing in...",
+      "success": "Successfully signed in!",
+      "divider": "Or continue with",
+      "google": "Continue with Google",
+      "register": {
+        "text": "Don't have an account?",
+        "link": "Sign up"
+      },
+      "errors": {
+        "invalidCredentials": "Invalid email or password",
+        "emailNotConfirmed": "Please confirm your email before signing in",
+        "tooManyAttempts": "Too many failed attempts. Please try again later",
+        "userNotFound": "No account found with this email address",
+        "networkError": "Connection error. Please check your internet connection",
+        "general": "An unexpected error occurred. Please try again"
+      }
+    },
+    "register": {
+      "title": "Create your account",
+      "description": "Join our platform to connect with remote teams",
+      "email": {
+        "label": "Email",
+        "placeholder": "name@example.com",
+        "emailInvalid": "Invalid email",
+        "error": {
+          "required": "Email is required",
+          "invalid": "Invalid email address"
+        }
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••",
+        "requirementsTitle": "Password Requirements:",
+        "requirements": {
+          "minLength": "Minimum 8 characters",
+          "uppercase": "At least one uppercase letter",
+          "specialChar": "At least one special character"
+        },
+        "error": {
+          "minLength": "Password must be at least 8 characters",
+          "uppercase": "Password must contain at least one uppercase letter",
+          "specialChar": "Password must contain at least one special character"
+        }
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "••••••••",
+        "error": {
+          "mismatch": "Passwords do not match"
+        }
+      },
+      "submit": "Start Registration",
+      "loading": "Starting Registration...",
+      "divider": "Or continue with",
+      "login": {
+        "text": "Already have an account?",
+        "link": "Sign in"
+      },
+      "errors": {
+        "passwordMismatch": "Passwords do not match",
+        "passwordLength": "Password must be at least 8 characters",
+        "passwordUppercase": "Password must contain at least one uppercase letter",
+        "passwordSpecial": "Password must contain at least one special character",
+        "general": "An error occurred during registration",
+        "userExists": "This email is already registered",
+        "userExistsWithAction": "This email is already registered. Do you already have an account?",
+        "emailInvalid": "The email format is not valid",
+        "passwordTooShort": "Password must be at least 6 characters",
+        "passwordWeak": "Password is too weak. Use at least 8 characters with uppercase letters and symbols",
+        "networkError": "Connection error. Please check your internet connection"
+      },
+      "onboarding": {
+        "step1": {
+          "description": "First, tell us a little about yourself",
+          "setupProfile": "Set up your profile to get started",
+          "changeAccount": "Change account",
+          "wrongAccount": "Not your account? Change account",
+          "signOutSuccess": "Session closed successfully",
+          "signOutError": "Error signing out",
+          "firstName": "First Name",
+          "firstNamePlaceholder": "Enter your first name",
+          "lastName": "Last Name",
+          "lastNamePlaceholder": "Enter your last name",
+          "country": "Country",
+          "selectCountry": "Select your country",
+          "loadingCountries": "Loading countries...",
+          "searchCountries": "Search countries...",
+          "noCountriesFound": "No countries found",
+          "city": "City",
+          "selectCity": "Enter your city",
+          "loadingCities": "Loading cities...",
+          "searchCities": "Search cities...",
+          "noCitiesFound": "No cities found",
+          "selectCountryFirst": "Select country",
+          "fullName": {
+            "label": "Full Name",
+            "placeholder": "First and last name",
+            "error": {
+              "minLength": "Name must be at least 3 characters.",
+              "specialChars": "Name must not contain numbers or special characters."
+            }
+          },
+          "firstNameError": {
+            "minLength": "First name must be at least 2 characters.",
+            "specialChars": "First name must not contain numbers or special characters."
+          },
+          "lastNameError": {
+            "minLength": "Last name must be at least 2 characters.",
+            "specialChars": "Last name must not contain numbers or special characters."
+          },
+          "countryError": {
+            "required": "Country is required."
+          },
+          "cityError": {
+            "required": "City is required."
+          },
+          "languagePreference": {
+            "label": "Preferred Language",
+            "english": "English",
+            "spanish": "Spanish",
+            "portuguese": "Portuguese",
+            "error": {
+              "required": "You must select a preferred language."
+            }
+          },
+          "phone": {
+            "label": "Phone Number",
+            "placeholder": "(000) 000-0000",
+            "verificationText": "We'll only use this for account verification",
+            "searchCountry": "Search country...",
+            "noResults": "No results found",
+            "error": {
+              "required": "Phone number is required.",
+              "digitsOnly": "Phone number should only contain digits."
+            }
+          },
+          "continue": "Continue",
+          "saving": "Saving..."
+        },
+        "step2": {
+          "title": "Professional Information",
+          "description": "Tell us about your professional experience",
+          "role": {
+            "label": "Role",
+            "placeholder": "Type to search or add role..."
+          },
+          "seniority": {
+            "label": "Seniority",
+            "placeholder": "Select your seniority level"
+          },
+          "skills": {
+            "label": "Skills",
+            "placeholder": "Type to search or add skills..."
+          },
+          "tools": {
+            "label": "Tools",
+            "placeholder": "Type to search or add tools..."
+          },
+          "goals": {
+            "label": "What are your goals?",
+            "entrepreneurship": "Entrepreneurship",
+            "freelancer": "Freelancer",
+            "professionalDevelopment": "Professional Development",
+            "remoteWork": "Remote Work"
+          },
+          "completeSetup": "Complete Setup",
+          "saving": "Saving..."
+        },
+        "step3": {
+          "title": "Registration Summary",
+          "description": "Summary of the information provided",
+          "summary": "Registration Summary",
+          "almostDone": "Almost Done!",
+          "welcomeMessage": "Welcome, {name}!",
+          "reviewInstructions": "Review your information before completing registration",
+          "personalInfo": "Personal Information",
+          "professionalInfo": "Professional Information",
+          "readyToComplete": "Ready to complete",
+          "preparingRegistration": "Preparing registration",
+          "completing": "Completing...",
+          "completeRegistration": "Complete Registration",
+          "completionNote": "By completing registration, you agree to our terms and conditions",
+          "saving": "Saving...",
+          "completeSetup": "Complete Registration"
+        }
+      }
+    },
+    "forgotPassword": {
+      "title": "Forgot your password?",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "email": {
+        "label": "Email",
+        "placeholder": "name@example.com"
+      },
+      "submit": "Send recovery link",
+      "loading": "Sending...",
+      "backToLogin": "Back to sign in",
+      "success": {
+        "title": "Email sent!",
+        "description": "We've sent a recovery link to your email address. Check your inbox and follow the instructions.",
+        "resendEmail": "Resend email",
+        "backToLogin": "Back to sign in"
+      },
+      "recovery": {
+        "success": {
+          "emailSent": "Recovery email sent successfully."
+        },
+        "error": {
+          "invalidEmail": "No account found with this email address.",
+          "emailNotConfirmed": "Your account hasn't been confirmed yet. Check your email.",
+          "tooManyRequests": "Too many requests. Please try again later.",
+          "networkError": "Connection error. Check your internet.",
+          "general": "Error sending recovery email."
+        }
+      }
+    },
+    "resetPassword": {
+      "title": "Reset password",
+      "description": "Enter the verification code and your new password.",
+      "token": {
+        "label": "Verification code",
+        "placeholder": "123456",
+        "hint": "6-digit code sent to your email",
+        "error": {
+          "required": "Verification code is required.",
+          "invalid": "Code must be exactly 6 digits."
+        }
+      },
+      "password": {
+        "label": "New password",
+        "placeholder": "••••••••",
+        "requirements": "Password requirements:",
+        "minLength": "Minimum 8 characters",
+        "uppercase": "At least one uppercase letter",
+        "specialChar": "At least one special character",
+        "error": {
+          "required": "New password is required.",
+          "minLength": "Password must be at least 8 characters.",
+          "uppercase": "Password must contain at least one uppercase letter.",
+          "specialChar": "Password must contain at least one special character."
+        }
+      },
+      "confirmPassword": {
+        "label": "Confirm password",
+        "placeholder": "••••••••",
+        "error": {
+          "required": "Password confirmation is required.",
+          "mismatch": "Passwords do not match."
+        }
+      },
+      "submit": "Reset password",
+      "loading": "Resetting...",
+      "backToLogin": "Back to sign in",
+      "reset": {
+        "success": {
+          "passwordUpdated": "Password reset successfully."
+        },
+        "error": {
+          "invalidToken": "Verification code is invalid or has expired.",
+          "weakPassword": "Password is too weak. Use at least 8 characters with uppercase letters and symbols.",
+          "networkError": "Connection error. Check your internet.",
+          "general": "Error resetting password."
+        }
+      }
+    }
+  }
+}

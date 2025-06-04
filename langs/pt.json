@@ -1,0 +1,311 @@
+{
+  "sidebar": {
+    "home": "Início",
+    "dashboard": "Painel",
+    "agenda": "Agenda",
+    "communication": "Comunicação",
+    "project": "Projeto",
+    "team": "Equipe",
+    "feedback": "Feedback",
+    "helpCenter": "Central de Ajuda",
+    "activeSimulation": "Simulação Ativa",
+    "findSimulation": "Buscar Simulação",
+    "exploreOpportunities": "Explore Oportunidades",
+    "nextChallenge": "Encontre sua próxima simulação",
+    "joinSimulation": "Junte-se a uma Simulação",
+    "discoverPotential": "Descubra seu potencial"
+  },
+  "userMenu": {
+    "viewProfile": "Ver perfil",
+    "profile": "Perfil",
+    "logout": "Sair"
+  },
+  "auth": {
+    "login": {
+      "title": "Bem-vindo de volta",
+      "description": "Digite suas credenciais para continuar",
+      "email": {
+        "label": "Email",
+        "placeholder": "seu.email@exemplo.com",
+        "error": {
+          "required": "O email é obrigatório",
+          "invalid": "Por favor digite um email válido"
+        }
+      },
+      "password": {
+        "label": "Senha",
+        "placeholder": "••••••••••••",
+        "forgot": "Esqueceu sua senha?",
+        "error": {
+          "required": "A senha é obrigatória",
+          "minLength": "A senha deve ter pelo menos 8 caracteres"
+        }
+      },
+      "submit": "Entrar",
+      "loading": "Entrando...",
+      "success": "Login realizado com sucesso!",
+      "divider": "Ou continue com",
+      "google": "Continuar com Google",
+      "register": {
+        "text": "Não tem uma conta?",
+        "link": "Cadastre-se"
+      },
+      "errors": {
+        "invalidCredentials": "Email ou senha incorretos",
+        "emailNotConfirmed": "Por favor confirme seu email antes de entrar",
+        "tooManyAttempts": "Muitas tentativas falharam. Tente novamente mais tarde",
+        "userNotFound": "Nenhuma conta encontrada com este email",
+        "networkError": "Erro de conexão. Verifique sua conexão com a internet",
+        "general": "Ocorreu um erro inesperado. Tente novamente"
+      }
+    },
+    "register": {
+      "title": "Crie sua conta",
+      "description": "Junte-se à nossa plataforma para conectar com equipes remotas",
+      "email": {
+        "label": "Email",
+        "placeholder": "nome@exemplo.com",
+        "emailInvalid": "Email inválido",
+        "error": {
+          "required": "O email é obrigatório",
+          "invalid": "Endereço de email inválido"
+        }
+      },
+      "password": {
+        "label": "Senha",
+        "placeholder": "••••••••",
+        "requirementsTitle": "Requisitos da senha:",
+        "requirements": {
+          "minLength": "Mínimo 8 caracteres",
+          "uppercase": "Pelo menos uma letra maiúscula",
+          "specialChar": "Pelo menos um caractere especial"
+        },
+        "error": {
+          "minLength": "A senha deve ter pelo menos 8 caracteres",
+          "uppercase": "A senha deve conter pelo menos uma letra maiúscula",
+          "specialChar": "A senha deve conter pelo menos um caractere especial"
+        }
+      },
+      "confirmPassword": {
+        "label": "Confirmar Senha",
+        "placeholder": "••••••••",
+        "error": {
+          "mismatch": "As senhas não coincidem"
+        }
+      },
+      "submit": "Iniciar Cadastro",
+      "loading": "Iniciando Cadastro...",
+      "divider": "Ou continue com",
+      "login": {
+        "text": "Já tem uma conta?",
+        "link": "Entrar"
+      },
+      "errors": {
+        "passwordMismatch": "As senhas não coincidem",
+        "passwordLength": "A senha deve ter pelo menos 8 caracteres",
+        "passwordUppercase": "A senha deve conter pelo menos uma letra maiúscula",
+        "passwordSpecial": "A senha deve conter pelo menos um caractere especial",
+        "general": "Ocorreu um erro durante o cadastro",
+        "userExists": "Este email já está cadastrado",
+        "userExistsWithAction": "Este email já está cadastrado. Você já tem uma conta?",
+        "emailInvalid": "O formato do email não é válido",
+        "passwordTooShort": "A senha deve ter pelo menos 6 caracteres",
+        "passwordWeak": "A senha é muito fraca. Use pelo menos 8 caracteres com letras maiúsculas e símbolos",
+        "networkError": "Erro de conexão. Verifique sua conexão com a internet"
+      },
+      "onboarding": {
+        "step1": {
+          "description": "Primeiro, conte-nos um pouco sobre você",
+          "setupProfile": "Configure seu perfil para começar",
+          "changeAccount": "Mudar conta",
+          "wrongAccount": "Não é sua conta? Mudar conta",
+          "signOutSuccess": "Sessão encerrada com sucesso",
+          "signOutError": "Erro ao encerrar sessão",
+          "firstName": "Nome",
+          "firstNamePlaceholder": "Digite seu nome",
+          "lastName": "Sobrenome",
+          "lastNamePlaceholder": "Digite seu sobrenome",
+          "country": "País",
+          "selectCountry": "Selecione seu país",
+          "loadingCountries": "Carregando países...",
+          "searchCountries": "Buscar países...",
+          "noCountriesFound": "Nenhum país encontrado",
+          "city": "Cidade",
+          "selectCity": "Digite sua cidade",
+          "loadingCities": "Carregando cidades...",
+          "searchCities": "Buscar cidades...",
+          "noCitiesFound": "Nenhuma cidade encontrada",
+          "selectCountryFirst": "Selecione país",
+          "fullName": {
+            "label": "Nome Completo",
+            "placeholder": "Nome e sobrenome",
+            "error": {
+              "minLength": "O nome deve ter pelo menos 3 caracteres.",
+              "specialChars": "O nome não deve conter números ou caracteres especiais."
+            }
+          },
+          "firstNameError": {
+            "minLength": "O nome deve ter pelo menos 2 caracteres.",
+            "specialChars": "O nome não deve conter números ou caracteres especiais."
+          },
+          "lastNameError": {
+            "minLength": "O sobrenome deve ter pelo menos 2 caracteres.",
+            "specialChars": "O sobrenome não deve conter números ou caracteres especiais."
+          },
+          "countryError": {
+            "required": "O país é obrigatório."
+          },
+          "cityError": {
+            "required": "A cidade é obrigatória."
+          },
+          "languagePreference": {
+            "label": "Idioma Preferido",
+            "english": "Inglês",
+            "spanish": "Espanhol",
+            "portuguese": "Português",
+            "error": {
+              "required": "Você deve selecionar um idioma preferido."
+            }
+          },
+          "phone": {
+            "label": "Número de Telefone",
+            "placeholder": "(000) 000-0000",
+            "verificationText": "Usaremos apenas para verificação da conta",
+            "searchCountry": "Buscar país...",
+            "noResults": "Nenhum resultado encontrado",
+            "error": {
+              "required": "O número de telefone é obrigatório.",
+              "digitsOnly": "O número de telefone deve conter apenas dígitos."
+            }
+          },
+          "continue": "Continuar",
+          "saving": "Salvando..."
+        },
+        "step2": {
+          "title": "Informações Profissionais",
+          "description": "Conte-nos sobre sua experiência profissional",
+          "role": {
+            "label": "Função",
+            "placeholder": "Digite para buscar ou adicionar função..."
+          },
+          "seniority": {
+            "label": "Senioridade",
+            "placeholder": "Selecione seu nível de senioridade"
+          },
+          "skills": {
+            "label": "Habilidades",
+            "placeholder": "Digite para buscar ou adicionar habilidades..."
+          },
+          "tools": {
+            "label": "Ferramentas",
+            "placeholder": "Digite para buscar ou adicionar ferramentas..."
+          },
+          "goals": {
+            "label": "Quais são seus objetivos?",
+            "entrepreneurship": "Empreendedorismo",
+            "freelancer": "Freelancer",
+            "professionalDevelopment": "Desenvolvimento Profissional",
+            "remoteWork": "Trabalho Remoto"
+          },
+          "completeSetup": "Completar Configuração",
+          "saving": "Salvando..."
+        },
+        "step3": {
+          "title": "Resumo do Cadastro",
+          "description": "Resumo das informações fornecidas",
+          "summary": "Resumo do Cadastro",
+          "almostDone": "Quase Pronto!",
+          "welcomeMessage": "Bem-vindo, {name}!",
+          "reviewInstructions": "Revise suas informações antes de completar o cadastro",
+          "personalInfo": "Informações Pessoais",
+          "professionalInfo": "Informações Profissionais",
+          "readyToComplete": "Pronto para completar",
+          "preparingRegistration": "Preparando cadastro",
+          "completing": "Completando...",
+          "completeRegistration": "Finalizar Cadastro",
+          "completionNote": "Ao completar o cadastro, você concorda com nossos termos e condições",
+          "saving": "Salvando...",
+          "completeSetup": "Finalizar Cadastro"
+        }
+      }
+    },
+    "forgotPassword": {
+      "title": "Esqueceu sua senha?",
+      "description": "Digite seu endereço de email e enviaremos um link para redefinir sua senha.",
+      "email": {
+        "label": "Email",
+        "placeholder": "nome@exemplo.com"
+      },
+      "submit": "Enviar link de recuperação",
+      "loading": "Enviando...",
+      "backToLogin": "Voltar ao login",
+      "success": {
+        "title": "Email enviado!",
+        "description": "Enviamos um link de recuperação para seu email. Verifique sua caixa de entrada e siga as instruções.",
+        "resendEmail": "Reenviar email",
+        "backToLogin": "Voltar ao login"
+      },
+      "recovery": {
+        "success": {
+          "emailSent": "Email de recuperação enviado com sucesso."
+        },
+        "error": {
+          "invalidEmail": "Nenhuma conta encontrada com este email.",
+          "emailNotConfirmed": "Sua conta ainda não foi confirmada. Verifique seu email.",
+          "tooManyRequests": "Muitas solicitações. Tente novamente mais tarde.",
+          "networkError": "Erro de conexão. Verifique sua internet.",
+          "general": "Erro ao enviar email de recuperação."
+        }
+      }
+    },
+    "resetPassword": {
+      "title": "Redefinir senha",
+      "description": "Digite o código de verificação e sua nova senha.",
+      "token": {
+        "label": "Código de verificação",
+        "placeholder": "123456",
+        "hint": "Código de 6 dígitos enviado para seu email",
+        "error": {
+          "required": "Código de verificação é obrigatório.",
+          "invalid": "Código deve ter exatamente 6 dígitos."
+        }
+      },
+      "password": {
+        "label": "Nova senha",
+        "placeholder": "••••••••",
+        "requirements": "Requisitos da senha:",
+        "minLength": "Mínimo 8 caracteres",
+        "uppercase": "Pelo menos uma letra maiúscula",
+        "specialChar": "Pelo menos um caractere especial",
+        "error": {
+          "required": "Nova senha é obrigatória.",
+          "minLength": "Senha deve ter pelo menos 8 caracteres.",
+          "uppercase": "Senha deve conter pelo menos uma letra maiúscula.",
+          "specialChar": "Senha deve conter pelo menos um caractere especial."
+        }
+      },
+      "confirmPassword": {
+        "label": "Confirmar senha",
+        "placeholder": "••••••••",
+        "error": {
+          "required": "Confirmação de senha é obrigatória.",
+          "mismatch": "Senhas não coincidem."
+        }
+      },
+      "submit": "Redefinir senha",
+      "loading": "Redefinindo...",
+      "backToLogin": "Voltar ao login",
+      "reset": {
+        "success": {
+          "passwordUpdated": "Senha redefinida com sucesso."
+        },
+        "error": {
+          "invalidToken": "Código de verificação é inválido ou expirou.",
+          "weakPassword": "Senha muito fraca. Use pelo menos 8 caracteres com letras maiúsculas e símbolos.",
+          "networkError": "Erro de conexão. Verifique sua internet.",
+          "general": "Erro ao redefinir senha."
+        }
+      }
+    }
+  }
+}

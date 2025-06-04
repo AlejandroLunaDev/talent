@@ -1,0 +1,383 @@
+'use client';
+
+import { ChangeEvent, useState, useEffect, useMemo, useCallback } from 'react';
+import {
+  Input,
+  Label,
+  RadioGroup,
+  RadioGroupItem,
+  Button,
+  Select,
+  SelectTrigger,
+  SelectContent,
+  Command,
+  CommandInput,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem
+} from '@/shared/ui';
+import { useOnboardingStore } from '../lib/store/onboardingStore';
+import { useSubmitOnboardingStep1 } from '../lib/hooks/useSubmitOnboardingStep1';
+import { useTranslations } from 'next-intl';
+import CountryList from 'country-list-with-dial-code-and-flag';
+
+interface FieldError {
+  path: (string | number)[];
+  message: string;
+}
+
+interface OnboardingStep1FormProps {
+  onSuccess?: () => void;
+}
+
+interface Country {
+  name: string;
+  flag: string;
+  code: string;
+  dial_code: string;
+}
+
+interface CountryListType {
+  getAll: () => Country[];
+}
+
+export function OnboardingStep1Form({ onSuccess }: OnboardingStep1FormProps) {
+  const t = useTranslations('auth.register.onboarding.step1');
+  const {
+    fullName,
+    setFullName,
+    city,
+    setCity,
+    phone,
+    setPhone,
+    languagePreference,
+    setLanguagePreference,
+    isLoading,
+    error,
+    selectedCountryCode: selectedCountryCodeFromStore,
+    setSelectedCountryCode
+  } = useOnboardingStore();
+  const { handleSubmit, fieldErrors, validateField } = useSubmitOnboardingStep1(
+    { onSuccess }
+  );
+
+  const [allCountries, setAllCountries] = useState<Country[]>([]);
+  const [localSelectedCountryCode, setLocalSelectedCountryCode] = useState<
+    string | null
+  >(selectedCountryCodeFromStore);
+  const [isSelectOpen, setIsSelectOpen] = useState(false); // State to manage Command visibility
+
+  // Fetch countries on component mount and set default
+  useEffect(() => {
+    const countriesData: Country[] = (CountryList as CountryListType).getAll();
+
+    // Filter out entries with potentially problematic or missing data and ensure unique countries by code
+    const uniqueCountries = countriesData.reduce((acc, current) => {
+      if (
+        current.code &&
+        current.dial_code &&
+        !acc.find(item => item.code === current.code)
+      ) {
+        acc.push(current);
+      }
+      return acc;
+    }, [] as Country[]);
+
+    uniqueCountries.sort((a, b) => a.name.localeCompare(b.name));
+    setAllCountries(uniqueCountries);
+
+    // Set default country to Argentina (AR) if none is selected
+    if (!selectedCountryCodeFromStore && uniqueCountries.length > 0) {
+      const defaultCountry =
+        uniqueCountries.find(country => country.code === 'AR') || // Default to Argentina
+        uniqueCountries.find(country => country.code === 'US') || // Fallback to US
+        uniqueCountries[0]; // Final fallback
+
+      setLocalSelectedCountryCode(defaultCountry.code);
+      setSelectedCountryCode(defaultCountry.code);
+    } else if (selectedCountryCodeFromStore) {
+      setLocalSelectedCountryCode(selectedCountryCodeFromStore);
+    }
+  }, [selectedCountryCodeFromStore, setSelectedCountryCode]);
+
+  // Find the selected country object based on the local state's country code
+  const selectedCountry = useMemo(() => {
+    return allCountries.find(
+      country => country.code === localSelectedCountryCode
+    );
+  }, [localSelectedCountryCode, allCountries]);
+
+  // Memoized helper to find a specific field error
+  const findFieldError = useCallback(
+    (fieldName: string): FieldError | undefined =>
+      fieldErrors?.find(
+        err =>
+          err.path.some(p => typeof p === 'string' && p === fieldName) ||
+          (fieldName === 'phone' &&
+            err.path.length === 1 &&
+            err.path[0] === 'phone')
+      ),
+    [fieldErrors]
+  );
+
+  // Memoize the phone validation logic
+  const validatePhone = useCallback(() => {
+    if (phone && selectedCountry?.dial_code) {
+      // Remove any non-digit characters from the dial code before concatenating
+      const cleanDialCode = selectedCountry.dial_code.replace(/\D/g, '');
+      const fullPhoneNumber = `${cleanDialCode}${phone}`;
+      validateField('phone', fullPhoneNumber);
+    }
+    // Eliminamos la condición que depende de findFieldError para romper la dependencia circular
+  }, [phone, selectedCountry?.dial_code, validateField]);
+
+  // Run validation only when phone or country code changes
+  useEffect(() => {
+    // Solo ejecutar la validación cuando cambie el teléfono o el código de país
+    // y solo si ambos valores están presentes
+    if (phone && selectedCountry?.dial_code) {
+      // Usar un timeout para evitar múltiples validaciones en rápida sucesión
+      const timer = setTimeout(() => {
+        validatePhone();
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [phone, selectedCountry?.dial_code, validatePhone]);
+
+  // Handle phone input change, ensure only digits are allowed for the number part
+  const handlePhoneInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputDigits = e.target.value.replace(/\D/g, ''); // Remove non-digits
+    setPhone(inputDigits);
+  };
+
+  // Memoize the command item selection handler
+  const handleCommandItemSelect = useCallback(
+    (countryCode: string) => {
+      // Only proceed if the country code is different
+      if (countryCode === localSelectedCountryCode) {
+        setIsSelectOpen(false);
+        return;
+      }
+
+      const newSelectedCountry = allCountries.find(c => c.code === countryCode);
+      if (newSelectedCountry) {
+        setLocalSelectedCountryCode(countryCode);
+        setSelectedCountryCode(countryCode);
+        setIsSelectOpen(false);
+
+        // Only validate if we have a phone number
+        if (phone) {
+          const cleanDialCode = newSelectedCountry.dial_code.replace(/\D/g, '');
+          const fullPhoneNumber = `${cleanDialCode}${phone}`;
+          validateField('phone', fullPhoneNumber);
+        }
+      }
+    },
+    [
+      allCountries,
+      localSelectedCountryCode,
+      phone,
+      setSelectedCountryCode,
+      validateField
+    ]
+  );
+
+  return (
+    <form onSubmit={handleSubmit} className='space-y-6'>
+      {error && (
+        <div className='p-3 rounded-md bg-red-500/20 border border-red-500/50 text-red-200 text-sm'>
+          {error}
+        </div>
+      )}
+      <div className='space-y-2'>
+        <label htmlFor='fullName' className='text-sm font-medium'>
+          {t('fullName.label')}
+        </label>
+        <Input
+          id='fullName'
+          placeholder={t('fullName.placeholder')}
+          value={fullName}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setFullName(e.target.value);
+            validateField('fullName', e.target.value);
+          }}
+          required
+          className='bg-slate-800/50 border-slate-700'
+        />
+        {/* Display fullName error */}
+        {findFieldError('fullName') && (
+          <p className='text-red-400 text-xs mt-1'>
+            {t(findFieldError('fullName')?.message || 'Invalid name')}
+          </p>
+        )}
+      </div>
+
+      {/* Language Preference */}
+      <div className='space-y-2'>
+        <label className='text-sm font-medium'>
+          {t('languagePreference.label')}
+        </label>
+        <RadioGroup
+          value={languagePreference}
+          onValueChange={value => {
+            // Only update if the value has actually changed
+            if (value !== languagePreference) {
+              setLanguagePreference(value);
+              validateField('languagePreference', value);
+            }
+          }}
+          className='flex gap-2'
+        >
+          <div className='flex-1'>
+            <RadioGroupItem
+              value='english'
+              id='english'
+              className='peer sr-only'
+            />
+            <Label
+              htmlFor='english'
+              className='flex h-9 w-full items-center justify-center rounded-md border border-slate-700 bg-slate-800/50 text-sm font-medium hover:bg-slate-800 hover:border-slate-600 peer-data-[state=checked]:bg-gradient-to-r peer-data-[state=checked]:from-[#00BFFF]/20 peer-data-[state=checked]:to-transparent peer-data-[state=checked]:border-[#00BFFF] peer-data-[state=checked]:text-[#00BFFF] cursor-pointer transition-all'
+            >
+              {t('languagePreference.english')}
+            </Label>
+          </div>
+          <div className='flex-1'>
+            <RadioGroupItem
+              value='español'
+              id='español'
+              className='peer sr-only'
+            />
+            <Label
+              htmlFor='español'
+              className='flex h-9 w-full items-center justify-center rounded-md border border-slate-700 bg-slate-800/50 text-sm font-medium hover:bg-slate-800 hover:border-slate-600 peer-data-[state=checked]:bg-gradient-to-r peer-data-[state=checked]:from-[#FF1493]/20 peer-data-[state=checked]:to-transparent peer-data-[state=checked]:border-[#FF1493] peer-data-[state=checked]:text-[#FF1493] cursor-pointer transition-all'
+            >
+              {t('languagePreference.spanish')}
+            </Label>
+          </div>
+          <div className='flex-1'>
+            <RadioGroupItem
+              value='português'
+              id='português'
+              className='peer sr-only'
+            />
+            <Label
+              htmlFor='português'
+              className='flex h-9 w-full items-center justify-center rounded-md border border-slate-700 bg-slate-800/50 text-sm font-medium hover:bg-slate-800 hover:border-slate-600 peer-data-[state=checked]:bg-gradient-to-r peer-data-[state=checked]:from-[#00BFFF]/20 peer-data-[state=checked]:to-transparent peer-data-[state=checked]:border-[#00BFFF] peer-data-[state=checked]:text-[#00BFFF] cursor-pointer transition-all'
+            >
+              {t('languagePreference.portuguese')}
+            </Label>
+          </div>
+        </RadioGroup>
+      </div>
+
+      <div className='space-y-4'>
+        <div className='space-y-2'>
+          <label htmlFor='city' className='text-sm font-medium'>
+            {t('city.label')}
+          </label>
+          <div className='relative'>
+            <Input
+              id='city'
+              placeholder={t('city.placeholder')}
+              value={city}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setCity(e.target.value);
+                validateField('city', e.target.value);
+              }}
+              required
+              className='bg-slate-800/50 border-slate-700'
+            />
+            {/* Display city error */}
+            {findFieldError('city') && (
+              <p className='text-red-400 text-xs mt-1'>
+                {t(findFieldError('city')?.message || 'Invalid city')}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className='space-y-2'>
+        <label htmlFor='phone' className='text-sm font-medium'>
+          {t('phone.label')}
+        </label>
+        <div className='flex'>
+          <div className='flex items-start'>
+            <Select
+              value={localSelectedCountryCode || ''}
+              onValueChange={handleCommandItemSelect}
+              open={isSelectOpen}
+              onOpenChange={setIsSelectOpen}
+            >
+              <SelectTrigger className='w-[110px] bg-slate-800/50 border-slate-700 rounded-r-none flex items-center gap-2 text-white'>
+                <div className='flex items-center gap-2 text-white'>
+                  {selectedCountry ? (
+                    <>
+                      <span>{selectedCountry.flag}</span>
+                      <span>{selectedCountry.dial_code}</span>
+                    </>
+                  ) : (
+                    <span>--</span>
+                  )}
+                </div>
+              </SelectTrigger>
+              <SelectContent className='max-h-[300px] overflow-y-auto bg-slate-800 border-slate-700 text-white'>
+                <Command>
+                  <CommandInput
+                    placeholder={t('phone.searchCountry')}
+                    className='bg-slate-800/50 border-slate-700'
+                  />
+                  <CommandEmpty>{t('phone.noResults')}</CommandEmpty>
+                  <CommandGroup>
+                    {allCountries.map(country => (
+                      <CommandItem
+                        key={country.code}
+                        onSelect={() => handleCommandItemSelect(country.code)}
+                        className='flex items-center gap-2 cursor-pointer hover:bg-slate-700'
+                      >
+                        <span>{country.flag}</span>
+                        <span>{country.name}</span>
+                        <span className='ml-auto text-slate-400'>
+                          {country.dial_code}
+                        </span>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </Command>
+              </SelectContent>
+            </Select>
+            <Input
+              id='phone'
+              type='tel'
+              placeholder={t('phone.placeholder')}
+              value={phone}
+              onChange={handlePhoneInputChange}
+              className='flex-1 bg-slate-800/50 border-slate-700 rounded-l-none focus:ring-blue-500 focus:border-blue-500'
+            />
+          </div>
+        </div>
+        {findFieldError('phone') && (
+          <p className='text-red-400 text-xs mt-1'>
+            {t(findFieldError('phone')?.message || 'Invalid phone number')}
+          </p>
+        )}
+      </div>
+
+      {/* Submit Button - Moved from CardFooter */}
+      <Button
+        type='submit'
+        className='w-full bg-gradient-to-r from-[#FF1493] to-[#00BFFF] hover:from-[#FF1493]/90 hover:to-[#00BFFF]/90'
+        disabled={
+          isLoading ||
+          !fullName ||
+          !city ||
+          !phone ||
+          !languagePreference ||
+          !selectedCountryCodeFromStore
+        }
+      >
+        {isLoading ? t('saving') : t('continue')}
+      </Button>
+    </form>
+  );
+}

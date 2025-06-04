@@ -1,0 +1,311 @@
+{
+  "sidebar": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "agenda": "Agenda",
+    "communication": "Comunicación",
+    "project": "Proyecto",
+    "team": "Equipo",
+    "feedback": "Retroalimentación",
+    "helpCenter": "Centro de Ayuda",
+    "activeSimulation": "Simulación Activa",
+    "findSimulation": "Buscar Simulación",
+    "exploreOpportunities": "Explora Oportunidades",
+    "nextChallenge": "Encuentra tu próxima simulación",
+    "joinSimulation": "Únete a una Simulación",
+    "discoverPotential": "Descubre tu potencial"
+  },
+  "userMenu": {
+    "viewProfile": "Ver perfil",
+    "profile": "Perfil",
+    "logout": "Cerrar sesión"
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "description": "Ingresa tus credenciales para continuar",
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "tu.correo@ejemplo.com",
+        "error": {
+          "required": "El correo electrónico es obligatorio",
+          "invalid": "Ingresa un correo electrónico válido"
+        }
+      },
+      "password": {
+        "label": "Contraseña",
+        "placeholder": "••••••••••••",
+        "forgot": "¿Olvidaste tu contraseña?",
+        "error": {
+          "required": "La contraseña es obligatoria",
+          "minLength": "La contraseña debe tener al menos 8 caracteres"
+        }
+      },
+      "submit": "Iniciar sesión",
+      "loading": "Iniciando sesión...",
+      "success": "¡Inicio de sesión exitoso!",
+      "divider": "O continúa con",
+      "google": "Continuar con Google",
+      "register": {
+        "text": "¿No tienes una cuenta?",
+        "link": "Regístrate"
+      },
+      "errors": {
+        "invalidCredentials": "Correo electrónico o contraseña incorrectos",
+        "emailNotConfirmed": "Por favor confirma tu correo electrónico antes de iniciar sesión",
+        "tooManyAttempts": "Demasiados intentos fallidos. Intenta de nuevo más tarde",
+        "userNotFound": "No existe una cuenta con este correo electrónico",
+        "networkError": "Error de conexión. Verifica tu conexión a internet",
+        "general": "Ocurrió un error inesperado. Intenta de nuevo"
+      }
+    },
+    "forgotPassword": {
+      "title": "¿Olvidaste tu contraseña?",
+      "description": "Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "nombre@ejemplo.com"
+      },
+      "submit": "Enviar enlace de recuperación",
+      "loading": "Enviando...",
+      "backToLogin": "Volver al inicio de sesión",
+      "success": {
+        "title": "¡Correo enviado!",
+        "description": "Te hemos enviado un enlace de recuperación a tu correo electrónico. Revisa tu bandeja de entrada y sigue las instrucciones.",
+        "resendEmail": "Reenviar correo",
+        "backToLogin": "Volver al inicio de sesión"
+      },
+      "recovery": {
+        "success": {
+          "emailSent": "Correo de recuperación enviado exitosamente."
+        },
+        "error": {
+          "invalidEmail": "No existe una cuenta con este correo electrónico.",
+          "emailNotConfirmed": "Tu cuenta aún no ha sido confirmada. Revisa tu correo.",
+          "tooManyRequests": "Demasiadas solicitudes. Intenta más tarde.",
+          "networkError": "Error de conexión. Verifica tu internet.",
+          "general": "Error al enviar el correo de recuperación."
+        }
+      }
+    },
+    "resetPassword": {
+      "title": "Restablecer contraseña",
+      "description": "Ingresa el código de verificación y tu nueva contraseña.",
+      "token": {
+        "label": "Código de verificación",
+        "placeholder": "123456",
+        "hint": "Código de 6 dígitos enviado a tu correo",
+        "error": {
+          "required": "El código de verificación es obligatorio.",
+          "invalid": "El código debe tener exactamente 6 dígitos."
+        }
+      },
+      "password": {
+        "label": "Nueva contraseña",
+        "placeholder": "••••••••",
+        "requirements": "Requisitos de contraseña:",
+        "minLength": "Mínimo 8 caracteres",
+        "uppercase": "Al menos una letra mayúscula",
+        "specialChar": "Al menos un carácter especial",
+        "error": {
+          "required": "La nueva contraseña es obligatoria.",
+          "minLength": "La contraseña debe tener al menos 8 caracteres.",
+          "uppercase": "La contraseña debe contener al menos una letra mayúscula.",
+          "specialChar": "La contraseña debe contener al menos un carácter especial."
+        }
+      },
+      "confirmPassword": {
+        "label": "Confirmar contraseña",
+        "placeholder": "••••••••",
+        "error": {
+          "required": "La confirmación de contraseña es obligatoria.",
+          "mismatch": "Las contraseñas no coinciden."
+        }
+      },
+      "submit": "Restablecer contraseña",
+      "loading": "Restableciendo...",
+      "backToLogin": "Volver al inicio de sesión",
+      "reset": {
+        "success": {
+          "passwordUpdated": "Contraseña restablecida exitosamente."
+        },
+        "error": {
+          "invalidToken": "El código de verificación es inválido o ha expirado.",
+          "weakPassword": "La contraseña es muy débil. Usa al menos 8 caracteres con mayúsculas y símbolos.",
+          "networkError": "Error de conexión. Verifica tu internet.",
+          "general": "Error al restablecer la contraseña."
+        }
+      }
+    },
+    "register": {
+      "title": "Crea tu cuenta",
+      "description": "Únete a nuestra plataforma para conectar con equipos remotos",
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "nombre@ejemplo.com",
+        "emailInvalid": "Correo electrónico inválido",
+        "error": {
+          "required": "El correo electrónico es obligatorio",
+          "invalid": "Correo electrónico inválido"
+        }
+      },
+      "password": {
+        "label": "Contraseña",
+        "placeholder": "••••••••",
+        "requirementsTitle": "Requisitos de contraseña:",
+        "requirements": {
+          "minLength": "Mínimo 8 caracteres",
+          "uppercase": "Al menos una letra mayúscula",
+          "specialChar": "Al menos un carácter especial"
+        },
+        "error": {
+          "minLength": "La contraseña debe tener al menos 8 caracteres",
+          "uppercase": "La contraseña debe contener al menos una letra mayúscula",
+          "specialChar": "La contraseña debe contener al menos un carácter especial"
+        }
+      },
+      "confirmPassword": {
+        "label": "Confirmar Contraseña",
+        "placeholder": "••••••••",
+        "error": {
+          "mismatch": "Las contraseñas no coinciden"
+        }
+      },
+      "submit": "Comenzar Registro",
+      "loading": "Iniciando Registro...",
+      "divider": "O continúa con",
+      "login": {
+        "text": "¿Ya tienes una cuenta?",
+        "link": "Iniciar sesión"
+      },
+      "errors": {
+        "passwordMismatch": "Las contraseñas no coinciden",
+        "passwordLength": "La contraseña debe tener al menos 8 caracteres",
+        "passwordUppercase": "La contraseña debe contener al menos una letra mayúscula",
+        "passwordSpecial": "La contraseña debe contener al menos un carácter especial",
+        "general": "Ocurrió un error durante el registro",
+        "userExists": "Este email ya está registrado",
+        "userExistsWithAction": "Este email ya está registrado. ¿Ya tienes una cuenta?",
+        "emailInvalid": "El formato del email no es válido",
+        "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+        "passwordWeak": "La contraseña es muy débil. Usa al menos 8 caracteres con mayúsculas y símbolos",
+        "networkError": "Error de conexión. Verifica tu conexión a internet"
+      },
+      "onboarding": {
+        "step1": {
+          "description": "Primero, cuéntanos un poco sobre ti",
+          "setupProfile": "Configura tu perfil para comenzar",
+          "changeAccount": "Cambiar cuenta",
+          "wrongAccount": "¿No es tu cuenta? Cambiar cuenta",
+          "signOutSuccess": "Sesión cerrada correctamente",
+          "signOutError": "Error al cerrar sesión",
+          "firstName": "Nombre",
+          "firstNamePlaceholder": "Ingresa tu nombre",
+          "lastName": "Apellido",
+          "lastNamePlaceholder": "Ingresa tu apellido",
+          "country": "País",
+          "selectCountry": "Selecciona tu país",
+          "loadingCountries": "Cargando países...",
+          "searchCountries": "Buscar países...",
+          "noCountriesFound": "No se encontraron países",
+          "city": "Ciudad",
+          "selectCity": "Ingresa tu ciudad",
+          "loadingCities": "Cargando ciudades...",
+          "searchCities": "Buscar ciudades...",
+          "noCitiesFound": "No se encontraron ciudades",
+          "selectCountryFirst": "Selecciona país",
+          "fullName": {
+            "label": "Nombre Completo",
+            "placeholder": "Nombre y apellido",
+            "error": {
+              "minLength": "El nombre debe tener al menos 3 caracteres.",
+              "specialChars": "El nombre no debe contener números ni caracteres especiales."
+            }
+          },
+          "firstNameError": {
+            "minLength": "El nombre debe tener al menos 2 caracteres.",
+            "specialChars": "El nombre no debe contener números ni caracteres especiales."
+          },
+          "lastNameError": {
+            "minLength": "El apellido debe tener al menos 2 caracteres.",
+            "specialChars": "El apellido no debe contener números ni caracteres especiales."
+          },
+          "countryError": {
+            "required": "El país es obligatorio."
+          },
+          "cityError": {
+            "required": "La ciudad es obligatoria."
+          },
+          "languagePreference": {
+            "label": "Idioma Preferido",
+            "english": "Inglés",
+            "spanish": "Español",
+            "portuguese": "Portugués",
+            "error": {
+              "required": "Debes seleccionar un idioma preferido."
+            }
+          },
+          "phone": {
+            "label": "Número de Teléfono",
+            "placeholder": "(000) 000-0000",
+            "verificationText": "Solo lo usaremos para verificación de cuenta",
+            "searchCountry": "Buscar país...",
+            "noResults": "No se encontraron resultados",
+            "error": {
+              "required": "El número de teléfono es obligatorio.",
+              "digitsOnly": "El número de teléfono solo debe contener dígitos."
+            }
+          },
+          "continue": "Continuar",
+          "saving": "Guardando..."
+        },
+        "step2": {
+          "title": "Información Profesional",
+          "description": "Cuéntanos sobre tu experiencia profesional",
+          "role": {
+            "label": "Rol",
+            "placeholder": "Escribe para buscar o añadir rol..."
+          },
+          "seniority": {
+            "label": "Seniority",
+            "placeholder": "Selecciona tu nivel de seniority"
+          },
+          "skills": {
+            "label": "Habilidades",
+            "placeholder": "Escribe para buscar o añadir habilidades..."
+          },
+          "tools": {
+            "label": "Herramientas",
+            "placeholder": "Escribe para buscar o añadir herramientas..."
+          },
+          "goals": {
+            "label": "¿Cuáles son tus objetivos?",
+            "entrepreneurship": "Emprendimiento",
+            "freelancer": "Freelancer",
+            "professionalDevelopment": "Desarrollo Profesional",
+            "remoteWork": "Trabajo Remoto"
+          },
+          "completeSetup": "Completar Configuración",
+          "saving": "Guardando..."
+        },
+        "step3": {
+          "title": "Resumen del Registro",
+          "description": "Resumen de la información proporcionada",
+          "summary": "Resumen del Registro",
+          "almostDone": "¡Ya Casi Terminamos!",
+          "welcomeMessage": "¡Bienvenido, {name}!",
+          "reviewInstructions": "Revisa tu información antes de completar el registro",
+          "personalInfo": "Información Personal",
+          "professionalInfo": "Información Profesional",
+          "readyToComplete": "Listo para completar",
+          "preparingRegistration": "Preparando registro",
+          "completing": "Completando...",
+          "completeRegistration": "Finalizar Registro",
+          "completionNote": "Al completar el registro, aceptas nuestros términos y condiciones",
+          "saving": "Guardando...",
+          "completeSetup": "Finalizar Registro"
+        }
+      }
+    }
+  }
+}

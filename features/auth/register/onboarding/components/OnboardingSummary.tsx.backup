@@ -1,0 +1,160 @@
+'use client';
+
+import { Button } from '@/shared/ui';
+import { useOnboardingStore } from '../lib/store/onboardingStore';
+import { useTranslations } from 'next-intl';
+import { useSubmitOnboardingSummary } from '../lib/hooks/useSubmitOnboardingSummary';
+import { Badge } from '@/shared/ui';
+
+interface OnboardingSummaryProps {
+  onSuccess?: () => void;
+}
+
+export function OnboardingSummary({ onSuccess }: OnboardingSummaryProps) {
+  const t = useTranslations('auth.register.onboarding');
+  const {
+    fullName,
+    languagePreference,
+    city,
+    phone,
+    role,
+    seniority,
+    skills,
+    tools,
+    goals, // goals is a string[]
+    isLoading // Assuming isLoading from store reflects overall submission status
+  } = useOnboardingStore();
+
+  const {
+    handleSubmit,
+    isLoading: isSubmitting,
+    authToken
+  } = useSubmitOnboardingSummary({ onSuccess });
+
+  // Helper para renderizar los objetivos traducidos
+  const renderGoals = () => {
+    if (!Array.isArray(goals) || goals.length === 0) {
+      return []; // Return an empty array if goals is not an array or empty
+    }
+    // Assuming goalKey matches a key in the translation file, e.g., "freelancer" -> t('step2.goals.freelancer')
+    const translatedGoals = goals.map(goalKey => t(`step2.goals.${goalKey}`));
+    return translatedGoals;
+  };
+
+  // Determine if the submit button should be disabled
+  // Check if goals is an array and not empty
+  const areGoalsSelected = Array.isArray(goals) && goals.length > 0;
+  const isSubmitDisabled = isSubmitting || !authToken || !areGoalsSelected; // Added check for goals
+
+  return (
+    <div className='space-y-6'>
+      <div className='space-y-2'>
+        <h3 className='text-lg font-semibold'>{t('step3.summary')}</h3>
+        <p>{t('step3.description')}</p>
+
+        {/* Personal Information in two columns */}
+        <div className='grid grid-cols-2 gap-4'>
+          <div className='space-y-2'>
+            <p>
+              <span className='font-medium'>{t('step1.fullName.label')}:</span>{' '}
+              {fullName || 'N/A'}
+            </p>
+            <p>
+              <span className='font-medium'>{t('step1.city.label')}:</span>{' '}
+              {city || 'N/A'}
+            </p>
+          </div>
+          <div className='space-y-2'>
+            <p>
+              <span className='font-medium'>
+                {t('step1.languagePreference.label')}:
+              </span>{' '}
+              {languagePreference || 'N/A'}
+            </p>
+            <p>
+              <span className='font-medium'>{t('step1.phone.label')}:</span>{' '}
+              {phone || 'N/A'}
+            </p>
+          </div>
+        </div>
+
+        {/* Professional Information - keeping existing structure for now */}
+        <div className='space-y-2 pt-4 border-t border-gray-700'>
+          <p>
+            <span className='font-medium'>{t('step2.role.label')}:</span>{' '}
+            {role || 'N/A'}
+          </p>
+          <p>
+            <span className='font-medium'>{t('step2.seniority.label')}:</span>{' '}
+            {seniority || 'N/A'}
+          </p>
+
+          {/* Mostrar Habilidades como badges */}
+          <div className='space-y-1'>
+            <span className='font-medium'>{t('step2.skills.label')}:</span>
+            <div className='flex flex-wrap gap-1 mt-1'>
+              {Array.isArray(skills) && skills.length > 0
+                ? skills.map(skill => (
+                    <Badge
+                      key={skill}
+                      variant='outline'
+                      className='border-[#00BFFF] text-[#00BFFF]'
+                    >
+                      {skill}
+                    </Badge>
+                  ))
+                : 'N/A'}
+            </div>
+          </div>
+
+          {/* Mostrar Herramientas como badges */}
+          <div className='space-y-1'>
+            <span className='font-medium'>{t('step2.tools.label')}:</span>
+            <div className='flex flex-wrap gap-1 mt-1'>
+              {Array.isArray(tools) && tools.length > 0
+                ? tools.map(tool => (
+                    <Badge
+                      key={tool}
+                      variant='outline'
+                      className='border-[#FF1493] text-[#FF1493]'
+                    >
+                      {tool}
+                    </Badge>
+                  ))
+                : 'N/A'}
+            </div>
+          </div>
+
+          {/* Mostrar Objetivos como badges */}
+          <div className='space-y-1'>
+            <span className='font-medium'>{t('step2.goals.label')}:</span>
+            <div className='flex flex-wrap gap-1 mt-1'>
+              {areGoalsSelected
+                ? renderGoals().map((goal: string) => (
+                    <Badge
+                      key={goal}
+                      variant='outline'
+                      className='border-[#00BFFF] text-[#00BFFF]'
+                    >
+                      {goal}
+                    </Badge>
+                  ))
+                : 'N/A'}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Botón de sumisión final */}
+      <Button
+        type='button'
+        className='w-full bg-gradient-to-r from-[#FF1493] to-[#00BFFF] hover:from-[#FF1493]/90 hover:to-[#00BFFF]/90'
+        onClick={handleSubmit}
+        disabled={isSubmitDisabled}
+      >
+        {isSubmitting ? t('step3.saving') : t('step3.completeSetup')}
+      </Button>
+    </div>
+  );
+}
+ 

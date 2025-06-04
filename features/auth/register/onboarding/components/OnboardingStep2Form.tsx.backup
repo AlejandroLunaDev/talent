@@ -1,0 +1,216 @@
+'use client';
+
+import { ChangeEvent, useState } from 'react';
+import {
+  Input,
+  Label,
+  Button,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Checkbox,
+  Badge
+} from '@/shared/ui';
+import { useOnboardingStore } from '../lib/store/onboardingStore';
+import { useSubmitOnboardingStep2 } from '../lib/hooks/useSubmitOnboardingStep2';
+import { useTranslations } from 'next-intl';
+
+interface OnboardingStep2FormProps {
+  onSuccess?: () => void;
+}
+
+export function OnboardingStep2Form({ onSuccess }: OnboardingStep2FormProps) {
+  const t = useTranslations('auth.register.onboarding.step2');
+  const {
+    role,
+    setRole,
+    seniority,
+    setSeniority,
+    skills,
+    addSkill,
+    removeSkill,
+    tools,
+    addTool,
+    removeTool,
+    goals,
+    toggleGoal,
+    isLoading,
+    error
+  } = useOnboardingStore();
+  const { handleSubmit } = useSubmitOnboardingStep2({ onSuccess });
+
+  // Local state for current input values
+  const [currentSkillInput, setCurrentSkillInput] = useState('');
+  const [currentToolInput, setCurrentToolInput] = useState('');
+
+  // Helper to handle adding skills
+  const handleAddSkill = (value: string) => {
+    const skillToAdd = value.trim();
+    if (skillToAdd && !skills.includes(skillToAdd)) {
+      addSkill(skillToAdd);
+      setCurrentSkillInput(''); // Clear input after adding
+    }
+  };
+
+  // Helper to handle adding tools
+  const handleAddTool = (value: string) => {
+    const toolToAdd = value.trim();
+    if (toolToAdd && !tools.includes(toolToAdd)) {
+      addTool(toolToAdd);
+      setCurrentToolInput(''); // Clear input after adding
+    }
+  };
+
+  // Handle key down for input fields
+  const handleSkillInputKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === 'Enter' || e.key === ',') {
+      e.preventDefault(); // Prevent form submission or comma in input
+      handleAddSkill(currentSkillInput);
+    }
+  };
+
+  const handleToolInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' || e.key === ',') {
+      e.preventDefault(); // Prevent form submission or comma in input
+      handleAddTool(currentToolInput);
+    }
+  };
+
+  const seniorityLevels = ['Junior', 'Mid-Level', 'Senior', 'Lead', 'Manager']; // Example seniority levels
+  const goalOptions = [
+    'entrepreneurship',
+    'freelancer',
+    'professionalDevelopment',
+    'remoteWork'
+  ]; // Keys for goal translations
+
+  return (
+    <form onSubmit={handleSubmit} className='space-y-6'>
+      {error && (
+        <div className='p-3 rounded-md bg-red-500/20 border border-red-500/50 text-red-200 text-sm'>
+          {error}
+        </div>
+      )}
+
+      <div className='space-y-2'>
+        <Label htmlFor='role'>{t('role.label')}</Label>
+        <Input
+          id='role'
+          placeholder={t('role.placeholder')}
+          value={role}
+          onChange={e => setRole(e.target.value)}
+          className='bg-slate-800/50 border-slate-700'
+        />
+      </div>
+
+      <div className='space-y-2'>
+        <Label htmlFor='seniority'>{t('seniority.label')}</Label>
+        <Select value={seniority} onValueChange={setSeniority}>
+          <SelectTrigger
+            id='seniority'
+            className='bg-slate-800/50 border-slate-700'
+          >
+            <SelectValue placeholder={t('seniority.placeholder')} />
+          </SelectTrigger>
+          <SelectContent>
+            {seniorityLevels.map(level => (
+              <SelectItem key={level} value={level.toLowerCase()}>
+                {level}
+              </SelectItem> // Using level as key and lowercase value
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className='space-y-2'>
+        <Label htmlFor='skills'>{t('skills.label')}</Label>
+        <Input
+          id='skills'
+          placeholder={t('skills.placeholder')}
+          value={currentSkillInput}
+          onChange={e => setCurrentSkillInput(e.target.value)}
+          onKeyDown={handleSkillInputKeyDown}
+          className='bg-slate-800/50 border-slate-700'
+        />
+        {/* Render skills as badges */}
+        <div className='flex flex-wrap gap-2 mt-2'>
+          {skills.map((skill, index) => (
+            <Badge
+              key={skill}
+              variant='outline'
+              className='border-[#00BFFF] text-[#00BFFF]'
+            >
+              {skill}
+              <button
+                type='button'
+                onClick={() => removeSkill(skill)}
+                className='ml-1 text-[#00BFFF]/70 hover:text-[#00BFFF] focus:outline-none'
+              >
+                &times;
+              </button>
+            </Badge>
+          ))}
+        </div>
+      </div>
+
+      <div className='space-y-2'>
+        <Label htmlFor='tools'>{t('tools.label')}</Label>
+        <Input
+          id='tools'
+          placeholder={t('tools.placeholder')}
+          value={currentToolInput}
+          onChange={e => setCurrentToolInput(e.target.value)}
+          onKeyDown={handleToolInputKeyDown}
+          className='bg-slate-800/50 border-slate-700'
+        />
+        {/* Render tools as badges */}
+        <div className='flex flex-wrap gap-2 mt-2'>
+          {tools.map((tool, index) => (
+            <Badge
+              key={tool}
+              variant='outline'
+              className='border-[#FF1493] text-[#FF1493]'
+            >
+              {tool}
+              <button
+                type='button'
+                onClick={() => removeTool(tool)}
+                className='ml-1 text-[#FF1493]/70 hover:text-[#FF1493] focus:outline-none'
+              >
+                &times;
+              </button>
+            </Badge>
+          ))}
+        </div>
+      </div>
+
+      <div className='space-y-4'>
+        <Label>{t('goals.label')}</Label>
+        <div className='space-y-2'>
+          {goalOptions.map(goalKey => (
+            <div key={goalKey} className='flex items-center space-x-2'>
+              <Checkbox
+                id={goalKey}
+                checked={goals.includes(goalKey)}
+                onCheckedChange={() => toggleGoal(goalKey)}
+              />
+              <Label htmlFor={goalKey}>{t(`goals.${goalKey}`)}</Label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Button
+        type='submit'
+        className='w-full bg-gradient-to-r from-[#FF1493] to-[#00BFFF] hover:from-[#FF1493]/90 hover:to-[#00BFFF]/90'
+        disabled={isLoading}
+      >
+        {isLoading ? t('saving') : t('completeSetup')}
+      </Button>
+    </form>
+  );
+}
