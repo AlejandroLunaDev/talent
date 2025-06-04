@@ -1,9 +1,6 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin({
-  // Remover el prefijo del idioma de la URL
-  localePrefix: 'never'
-});
+const withNextIntl = createNextIntlPlugin('./i18n/index.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
