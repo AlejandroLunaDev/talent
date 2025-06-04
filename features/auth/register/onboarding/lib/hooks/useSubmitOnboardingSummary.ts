@@ -12,7 +12,8 @@ export const useSubmitOnboardingSummary = ({
 }: UseSubmitOnboardingSummaryProps = {}) => {
   const router = useRouter();
   const {
-    fullName,
+    firstName,
+    lastName,
     languagePreference,
     city,
     phone,
@@ -26,6 +27,8 @@ export const useSubmitOnboardingSummary = ({
     reset,
     isLoading
   } = useOnboardingStore();
+
+  const fullName = `${firstName} ${lastName}`.trim();
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();

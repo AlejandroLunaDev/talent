@@ -19,8 +19,10 @@ export function OnboardingStep1Form({ onSuccess }: OnboardingStep1FormProps) {
   const t = useTranslations('auth.register.onboarding.step1');
 
   const {
-    fullName,
-    setFullName,
+    firstName,
+    lastName,
+    setFirstName,
+    setLastName,
     city,
     setCity,
     phone,
@@ -50,6 +52,8 @@ export function OnboardingStep1Form({ onSuccess }: OnboardingStep1FormProps) {
     [fieldErrors]
   );
 
+  const fullName = `${firstName} ${lastName}`.trim();
+
   return (
     <form onSubmit={handleSubmit} className='space-y-6'>
       {error && (
@@ -60,8 +64,12 @@ export function OnboardingStep1Form({ onSuccess }: OnboardingStep1FormProps) {
 
       <FullNameField
         value={fullName}
-        onChange={setFullName}
-        error={findFieldError('fullName')}
+        onChange={value => {
+          const names = value.split(' ');
+          setFirstName(names[0] || '');
+          setLastName(names.slice(1).join(' ') || '');
+        }}
+        error={findFieldError('firstName') || findFieldError('lastName')}
         onValidate={validateField}
       />
 
@@ -92,7 +100,8 @@ export function OnboardingStep1Form({ onSuccess }: OnboardingStep1FormProps) {
         className='w-full bg-gradient-to-r from-[#FF1493] to-[#00BFFF] hover:from-[#FF1493]/90 hover:to-[#00BFFF]/90'
         disabled={
           isLoading ||
-          !fullName ||
+          !firstName ||
+          !lastName ||
           !city ||
           !phone ||
           !languagePreference ||

@@ -14,7 +14,8 @@ interface OnboardingSummaryProps {
 
 export function OnboardingSummary({ onSuccess }: OnboardingSummaryProps) {
   const {
-    fullName,
+    firstName,
+    lastName,
     languagePreference,
     city,
     phone,
@@ -33,6 +34,7 @@ export function OnboardingSummary({ onSuccess }: OnboardingSummaryProps) {
   } = useSubmitOnboardingSummary({ onSuccess });
 
   // Prepare data for components
+  const fullName = `${firstName} ${lastName}`.trim();
   const personalData: PersonalInfoData = {
     fullName,
     city,
