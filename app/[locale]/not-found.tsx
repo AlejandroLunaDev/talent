@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-export default function NotFound(): JSX.Element {
+export default function NotFound() {
   return (
     <div className='min-h-screen w-full bg-primary text-white flex flex-col items-center justify-center'>
       <div className='absolute inset-0 bg-primary bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:50px_50px]'></div>
