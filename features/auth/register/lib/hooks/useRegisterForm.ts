@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { createRegisterSchema } from '../validations/registerValidation';
 import type { RegisterFormData } from '../../types';
+import { z } from 'zod';
 
 interface UseRegisterFormProps {
   onSubmit: (data: RegisterFormData) => Promise<void>;
@@ -27,14 +28,31 @@ export function useRegisterForm({ onSubmit, isLoading }: UseRegisterFormProps) {
   // Memoize schema to prevent infinite loops
   const schema = useMemo(() => createRegisterSchema(t), [t]);
 
+  // Create individual field schemas for validation
+  const fieldSchemas = useMemo(
+    () => ({
+      email: z
+        .string()
+        .min(1, t('email.error.required'))
+        .email(t('email.error.invalid')),
+      password: z
+        .string()
+        .min(8, t('password.error.minLength'))
+        .regex(/[A-Z]/, t('password.error.uppercase'))
+        .regex(/[^A-Za-z0-9]/, t('password.error.specialChar')),
+      confirmPassword: z.string()
+    }),
+    [t]
+  );
+
   // Validate a specific field
   const validateField = useCallback(
     (field: string, value: string) => {
       try {
         if (field === 'email') {
-          schema.shape.email.parse(value);
+          fieldSchemas.email.parse(value);
         } else if (field === 'password') {
-          schema.shape.password.parse(value);
+          fieldSchemas.password.parse(value);
         } else if (field === 'confirmPassword') {
           // For confirm password, we need to check the whole object
           const testData = { ...formData, confirmPassword: value };
@@ -45,7 +63,7 @@ export function useRegisterForm({ onSubmit, isLoading }: UseRegisterFormProps) {
         return error.errors?.[0]?.message || 'Invalid value';
       }
     },
-    [schema, formData]
+    [fieldSchemas, schema, formData]
   );
 
   // Real-time validation for form completeness (but only show errors for touched fields)
