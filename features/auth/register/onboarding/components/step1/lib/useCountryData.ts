@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Country, CountryListType } from './types';
+import { Country, CountryListType } from '@/shared/types/onboarding';
 
 // Countries from America and Europe (ISO 3166-1 alpha-2 codes)
 const AMERICA_AND_EUROPE_COUNTRIES = [

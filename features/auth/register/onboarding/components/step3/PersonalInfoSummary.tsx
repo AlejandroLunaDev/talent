@@ -10,10 +10,12 @@ export function PersonalInfoSummary({ data }: PersonalInfoSummaryProps) {
   const tStep1 = useTranslations('auth.register.onboarding.step1');
   const tStep3 = useTranslations('auth.register.onboarding.step3');
 
+  const fullName = `${data.firstName} ${data.lastName}`.trim();
+
   const infoItems = [
     {
       label: tStep1('fullName.label'),
-      value: data.fullName,
+      value: fullName,
       icon: '👤'
     },
     {

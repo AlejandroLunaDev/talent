@@ -11,7 +11,7 @@ import {
 import { LogOut, User, ChevronDown } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { UserMetadata } from '@/types/user';
+import { UserMetadata } from '@/shared/types/user';
 import { Route } from 'next';
 
 interface UserMenuProps {

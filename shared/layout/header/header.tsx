@@ -42,6 +42,22 @@ export default function Header() {
     await supabase.auth.signOut();
   };
 
+  // Adapt Supabase user_metadata to our UserMetadata interface
+  const adaptUserMetadata = (supabaseMetadata: any) => {
+    return {
+      avatar_url: supabaseMetadata?.avatar_url || '',
+      email: supabaseMetadata?.email || user?.email || '',
+      email_verified: supabaseMetadata?.email_verified || false,
+      full_name:
+        supabaseMetadata?.full_name || supabaseMetadata?.name || 'Usuario',
+      name: supabaseMetadata?.name || supabaseMetadata?.full_name || 'Usuario',
+      phone_verified: supabaseMetadata?.phone_verified || false,
+      picture: supabaseMetadata?.picture || supabaseMetadata?.avatar_url || '',
+      provider_id: supabaseMetadata?.provider_id || '',
+      sub: supabaseMetadata?.sub || user?.id || ''
+    };
+  };
+
   if (!user) return null;
 
   return (
@@ -54,7 +70,10 @@ export default function Header() {
       </div>
 
       <div className='flex items-center gap-4'>
-        <UserMenu user={user.user_metadata} onLogout={handleLogout} />
+        <UserMenu
+          user={adaptUserMetadata(user.user_metadata)}
+          onLogout={handleLogout}
+        />
         <LanguageSwitcher />
       </div>
     </header>

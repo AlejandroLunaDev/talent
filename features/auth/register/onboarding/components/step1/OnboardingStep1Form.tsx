@@ -84,6 +84,7 @@ export function OnboardingStep1Form({ onSuccess }: OnboardingStep1FormProps) {
         onChange={setCity}
         error={findFieldError('city')}
         onValidate={validateField}
+        selectedCountry={selectedCountryCode || ''}
       />
 
       <PhoneField

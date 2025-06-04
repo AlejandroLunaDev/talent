@@ -1,8 +1,8 @@
 import { RadioGroup, RadioGroupItem, Label } from '@/shared/ui';
 import { useTranslations } from 'next-intl';
-import { FieldProps } from './lib/types';
+import { Step1FieldProps } from './lib/types';
 
-interface LanguagePreferenceFieldProps extends FieldProps {
+interface LanguagePreferenceFieldProps extends Step1FieldProps {
   value: string;
   onChange: (value: string) => void;
 }

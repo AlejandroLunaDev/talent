@@ -4,6 +4,7 @@ import { cn } from '@/shared/lib/utils/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import { Route } from 'next';
 import {
   Home,
   LayoutDashboard,
@@ -58,7 +59,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div className='flex-1 px-2 space-y-1'>
         {/* Regular menu items before SIMULATION STATUS */}
         <Link
-          href='/'
+          href={'/' as Route}
           className={cn(
             'flex items-center gap-4 px-3 py-2 rounded-lg transition-colors',
             pathname === '/' ? 'bg-white/5 text-white' : 'hover:text-white'
@@ -77,7 +78,7 @@ export function Sidebar({ className }: SidebarProps) {
           return (
             <Link
               key={item.href}
-              href={item.href}
+              href={item.href as Route}
               className={cn(
                 'flex items-center gap-4 px-3 py-2 rounded-lg transition-colors',
                 isActive ? 'bg-white/5 text-white' : 'hover:text-white'

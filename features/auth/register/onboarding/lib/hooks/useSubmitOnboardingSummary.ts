@@ -43,9 +43,9 @@ export const useSubmitOnboardingSummary = ({
       !phone ||
       !role ||
       !seniority ||
-      !skills ||
-      !tools ||
-      Object.values(goals).every(goal => !goal)
+      !skills.length ||
+      !tools.length ||
+      !goals.length
     ) {
       setError('Please complete all steps before submitting.');
       toast.error('Por favor, completa todos los pasos del registro.');
@@ -64,7 +64,7 @@ export const useSubmitOnboardingSummary = ({
         seniority,
         skills,
         tools,
-        goals: Object.keys(goals).filter(key => goals[key])
+        goals
       });
 
       // Simulate API delay

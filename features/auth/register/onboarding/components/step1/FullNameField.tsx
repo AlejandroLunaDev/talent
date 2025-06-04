@@ -1,11 +1,13 @@
 import { ChangeEvent } from 'react';
 import { Input } from '@/shared/ui';
 import { useTranslations } from 'next-intl';
-import { FieldProps } from './lib/types';
+import { FieldError } from './lib/types';
 
-interface FullNameFieldProps extends FieldProps {
+interface FullNameFieldProps {
   value: string;
   onChange: (value: string) => void;
+  error?: FieldError;
+  onValidate?: (field: any, value: any) => void; // Optional since this field doesn't validate
 }
 
 export function FullNameField({
@@ -19,7 +21,8 @@ export function FullNameField({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     onChange(newValue);
-    onValidate('fullName', newValue);
+    // No validation here since this is a composite field
+    // Validation happens at the form level for firstName/lastName
   };
 
   return (

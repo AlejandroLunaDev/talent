@@ -2,13 +2,11 @@
 
 import { useTranslations } from 'next-intl';
 import { Input } from '@/shared/ui';
-import { FieldError } from './lib/types';
+import { Step1FieldProps } from './lib/types';
 
-interface CityFieldProps {
+interface CityFieldProps extends Step1FieldProps {
   value: string;
   onChange: (value: string) => void;
-  error?: FieldError;
-  onValidate?: (field: string, value: string) => void;
   selectedCountry: string;
 }
 

@@ -1,11 +1,11 @@
 import { useTranslations } from 'next-intl';
 import { useCountryData } from '../lib/useCountryData';
 import { usePhoneValidation } from '../lib/usePhoneValidation';
-import { FieldProps } from '../lib/types';
+import { Step1FieldProps } from '../lib/types';
 import { CountrySelect } from './CountrySelect';
 import { PhoneInput } from './PhoneInput';
 
-interface PhoneFieldProps extends FieldProps {
+interface PhoneFieldProps extends Step1FieldProps {
   value: string;
   onChange: (value: string) => void;
   selectedCountryCode: string | null;

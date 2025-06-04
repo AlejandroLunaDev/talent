@@ -36,7 +36,8 @@ export function OnboardingSummary({ onSuccess }: OnboardingSummaryProps) {
   // Prepare data for components
   const fullName = `${firstName} ${lastName}`.trim();
   const personalData: PersonalInfoData = {
-    fullName,
+    firstName,
+    lastName,
     city,
     phone,
     languagePreference
