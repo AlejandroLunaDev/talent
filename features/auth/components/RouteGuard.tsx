@@ -12,6 +12,7 @@ import {
   getUserNavigationState,
   ROUTES
 } from '../lib/utils/route-utils';
+import { Route } from 'next';
 
 interface RouteGuardProps {
   children: React.ReactNode;
@@ -103,7 +104,7 @@ export function RouteGuard({
         NavigationService.getDestinationRoute(userState, pathname);
 
       setStatus('Redirigiendo...');
-      router.replace(destination);
+      router.replace(destination as Route);
     }
   }, [userState, requiredState, pathname, router, fallbackRoute]);
 

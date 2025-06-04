@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Route } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import Image from 'next/image';
 import {
@@ -34,12 +35,9 @@ export default function Onboarding() {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleOnboardingComplete = () => {
-    console.log('Onboarding process finished!');
-    // User has completed onboarding and is already logged in
-    // Redirect to main application
-    toast.success('¡Bienvenido! Tu perfil ha sido configurado exitosamente.');
-    router.push('/home');
+  const handleSuccess = () => {
+    console.log('✅ Onboarding completed successfully!');
+    router.push('/home' as Route);
   };
 
   const renderStep = () => {
@@ -49,7 +47,7 @@ export default function Onboarding() {
       case 2:
         return <OnboardingStep2Form onSuccess={handleNextStep} />;
       case 3:
-        return <OnboardingSummary onSuccess={handleOnboardingComplete} />;
+        return <OnboardingSummary onSuccess={handleSuccess} />;
       default:
         return null;
     }

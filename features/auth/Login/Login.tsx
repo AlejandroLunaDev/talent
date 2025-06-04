@@ -17,6 +17,7 @@ import { useTranslations } from 'next-intl';
 import { LoginForm } from './components/LoginForm';
 import { NavigationService } from '../lib/utils/route-utils';
 import { useLoginForm } from './lib/hooks/useLoginForm';
+import { Route } from 'next';
 
 export function Login() {
   const router = useRouter();
@@ -43,7 +44,7 @@ export function Login() {
         isProfileComplete,
         redirectTo
       });
-      router.push(destination);
+      router.push(destination as Route);
     }
   });
 

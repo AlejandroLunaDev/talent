@@ -7,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { checkProfileCompleteness } from '../lib/utils/dev-config';
 import { NavigationService, ROUTES } from '../lib/utils/route-utils';
+import { Route } from 'next';
 
 export default function Callback() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function Callback() {
           console.error('OAuth error:', error);
           setStatus('Error en la autenticación');
           setTimeout(
-            () => router.push(`${ROUTES.LOGIN}?error=oauth_error`),
+            () => router.push(`${ROUTES.LOGIN}?error=oauth_error` as Route),
             2000
           );
           return;
@@ -44,7 +45,7 @@ export default function Callback() {
           console.error('Session error:', sessionError);
           setStatus('Error en la autenticación');
           setTimeout(
-            () => router.push(`${ROUTES.LOGIN}?error=session_error`),
+            () => router.push(`${ROUTES.LOGIN}?error=session_error` as Route),
             2000
           );
           return;
@@ -53,7 +54,7 @@ export default function Callback() {
         if (!session?.user) {
           console.log('No session found, redirecting to login');
           setStatus('No se encontró sesión activa');
-          setTimeout(() => router.push(ROUTES.LOGIN), 1500);
+          setTimeout(() => router.push(ROUTES.LOGIN as Route), 1500);
           return;
         }
 
@@ -75,12 +76,12 @@ export default function Callback() {
           setStatus('Configurando tu perfil...');
         }
 
-        router.replace(destination);
+        router.replace(destination as Route);
       } catch (error) {
         console.error('Callback error:', error);
         setStatus('Error durante la autenticación');
         setTimeout(
-          () => router.push(`${ROUTES.LOGIN}?error=callback_error`),
+          () => router.push(`${ROUTES.LOGIN}?error=callback_error` as Route),
           2000
         );
       }

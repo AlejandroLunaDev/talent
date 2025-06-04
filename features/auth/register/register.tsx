@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { Route } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -30,10 +31,10 @@ export default function Register() {
         // Redirect based on profile completion status
         if (isProfileComplete) {
           // User has completed profile - go to main app
-          router.push('/home');
+          router.push('/home' as Route);
         } else {
           // User needs to complete onboarding
-          router.push('/onboarding');
+          router.push('/onboarding' as Route);
         }
       }
     });

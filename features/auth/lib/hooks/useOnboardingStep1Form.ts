@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Route } from 'next';
 
 interface UseOnboardingStep1FormResult {
   fullName: string;
@@ -125,11 +126,9 @@ export const useOnboardingStep1Form = (): UseOnboardingStep1FormResult => {
         );
       }
 
-      console.log('Onboarding step 1 successful');
-      toast.success('Información personal guardada correctamente');
-
-      // Redirect to the next step of onboarding
-      router.push('/onboarding/professional');
+      console.log('✅ Step 1 completed successfully!');
+      setIsLoading(false);
+      router.push('/onboarding/professional' as Route);
     } catch (err) {
       console.error('Error during onboarding submit:', err);
       setError(
@@ -140,8 +139,6 @@ export const useOnboardingStep1Form = (): UseOnboardingStep1FormResult => {
           ? err.message
           : 'Error al guardar información personal'
       );
-    } finally {
-      setIsLoading(false);
     }
   };
 

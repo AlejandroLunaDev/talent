@@ -7,6 +7,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect, useState } from 'react';
 import { User } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
+import { Route } from 'next';
 
 export default function Header() {
   const supabase = createClientComponentClient();
@@ -27,7 +28,7 @@ export default function Header() {
       (event, session) => {
         setUser(session?.user ?? null);
         if (event === 'SIGNED_OUT') {
-          router.push('/login');
+          router.push('/login' as Route);
         }
       }
     );

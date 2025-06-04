@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Route } from 'next';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@/shared/ui';
 import { useOnboardingStore } from '../lib/store/onboardingStore';
@@ -109,7 +110,7 @@ export function OnboardingStep1Form({ onSuccess }: OnboardingStep1FormProps) {
 
       // Pequeño delay para asegurar que el estado se actualice
       setTimeout(() => {
-        router.push('/login');
+        router.push('/login' as Route);
       }, 100);
     } catch (error) {
       console.error('Error signing out:', error);

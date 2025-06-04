@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Route } from 'next';
 
 export const useAuthNavigation = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ export const useAuthNavigation = () => {
   const navigateAfterLogin = useCallback(() => {
     // Es preferible usar router.push para una navegación más fluida en Next.js
     // Esto evita una recarga completa de la página
-    router.push(callbackUrl);
+    router.push(callbackUrl as Route);
   }, [router, callbackUrl]);
 
   const goBack = useCallback(() => {

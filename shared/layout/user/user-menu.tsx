@@ -12,6 +12,7 @@ import { LogOut, User, ChevronDown } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { UserMetadata } from '@/types/user';
+import { Route } from 'next';
 
 interface UserMenuProps {
   user: UserMetadata;
@@ -23,7 +24,7 @@ export function UserMenu({ user, onLogout }: UserMenuProps) {
   const t = useTranslations('userMenu');
 
   const handleProfileRedirect = () => {
-    router.push('/profile');
+    router.push('/profile' as Route);
   };
 
   // Provide fallback values for user properties if they are null or undefined
