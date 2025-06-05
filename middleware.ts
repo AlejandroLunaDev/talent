@@ -158,7 +158,7 @@ class TokenValidator {
 }
 
 // Simple profile check that's Edge Runtime compatible
-async function checkProfileCompletenessEdge(userId: string): Promise<boolean> {
+async function checkProfileCompletenessEdge(): Promise<boolean> {
   try {
     // In Edge Runtime, we'll be more conservative and assume profile is incomplete
     // The actual profile check will happen on the client side
@@ -196,9 +196,7 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
         userState = UserAuthState.createUnauthenticated();
       } else {
         // En Edge Runtime, ser conservador con el check de perfil
-        const isProfileComplete = await checkProfileCompletenessEdge(
-          tokenPayload.sub
-        );
+        const isProfileComplete = await checkProfileCompletenessEdge();
         userState = UserAuthState.createAuthenticated(
           tokenPayload.sub,
           isProfileComplete
